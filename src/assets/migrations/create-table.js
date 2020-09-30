@@ -18,18 +18,18 @@ async function up(queryInterface, sequelize) {
 
     <% attributes.forEach(function(attribute) { %>
       <%= attribute.fieldName %>: {
-        type: Sequelize.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(sequelize.${attribute.dataType.toUpperCase()})` : attribute.dataValues ? `${attribute.dataType.toUpperCase()}(${attribute.dataValues})` : attribute.dataType.toUpperCase() %>
+        type: sequelize.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(sequelize.${attribute.dataType.toUpperCase()})` : attribute.dataValues ? `${attribute.dataType.toUpperCase()}(${attribute.dataValues})` : attribute.dataType.toUpperCase() %>
       },
     <% }) %>
 
     <%= createdAt %>: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: sequelize.DATE
     },
 
     <%= updatedAt %>: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: sequelize.DATE
     }
   });
 };
