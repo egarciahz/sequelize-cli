@@ -1,8 +1,13 @@
-'use strict';
-
-const { Model } = require('sequelize');
-
-module.exports = (sequelize, DataTypes) => {
+import Sequelize, { Model, DataTypes } from "sequelize";
+/**
+ * @class <%= name %>
+ * 
+ * @param {DataTypes} datatype
+ * @param {Sequelize} sequelize
+ * 
+ * @return {Model}
+ */
+export default function (sequelize, Types) {
   class <%= name %> extends Model {
     /**
      * Helper method for defining associations.
@@ -16,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 
   <%= name %>.init({
     <% attributes.forEach(function(attribute, index) { %>
-      <%= attribute.fieldName %>: DataTypes.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(DataTypes.${attribute.dataType.toUpperCase()})` : attribute.dataValues ? `${attribute.dataType.toUpperCase()}(${attribute.dataValues})` : attribute.dataType.toUpperCase() %>
+      <%= attribute.fieldName %>: Types.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(DataTypes.${attribute.dataType.toUpperCase()})` : attribute.dataValues ? `${attribute.dataType.toUpperCase()}(${attribute.dataValues})` : attribute.dataType.toUpperCase() %>
       <%= (Object.keys(attributes).length - 1) > index ? ',' : '' %>
     <% }) %>
   }, {
