@@ -1,13 +1,15 @@
+'use strict';
 import Sequelize, { Model, DataTypes } from "sequelize";
+
 /**
  * @class <%= name %>
  * 
  * @param {DataTypes} datatype
  * @param {Sequelize} sequelize
  * 
- * @return {Model}
+ * @return {<%= name %>}
  */
-export default function (sequelize, Types) {
+export default function <%= `${name}ModelFactory` %> (sequelize, Types) {
   class <%= name %> extends Model {
     /**
      * Helper method for defining associations.
